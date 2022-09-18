@@ -1,5 +1,11 @@
+import PageHeader from '../../components/PageHeader';
+
 function EditContact(){
-  return "edit contact"
+  return (
+    <PageHeader
+      title='Editar Gabriel Barros'
+     />
+  )
 }
 
 
