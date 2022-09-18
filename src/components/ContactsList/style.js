@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-top: 32px;
-  `;
+`;
 
 export const Header = styled.header`
   display: flex;
@@ -30,16 +30,16 @@ export const Header = styled.header`
 
   }`;
 
-  export const CardsContainer = styled.div`
-    margin-top: 24px;
+export const CardsContainer = styled.div`
+  margin-top: 24px;
 
-    header {
-      margin-bottom: 8px;
+  header {
+    margin-bottom: 8px;
 
-      button{
-        display: flex;
-        align-items: center;
-        background-color: transparent;
+    button{
+      display: flex;
+      align-items: center;
+      background-color: transparent;
         border: none;
       }
 
@@ -51,28 +51,34 @@ export const Header = styled.header`
     }
   `;
 
-  export const Card = styled.div`
-    background-color: ${({ theme })=> theme.colors[100]};
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 4px;
+export const Card = styled.div`
+  background-color: ${({ theme })=> theme.colors[100]};
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
 
-    .info {
-      .contact-name{
-        display: flex;
-        align-items: center;
-        small {
-          background-color: ${({ theme })=> theme.colors.primary[300]};
-          color: ${({ theme })=> theme.colors.primary[500]};
-          text-transform: uppercase;
-          font-size: 12px;
-          font-weight: bold;
-          padding: 4px;
-          border-radius: 4px;
-          margin-left: 8px;
+  & + & {
+    margin-top: 16px;
+  }
+
+  .info {
+    .contact-name{
+      display: flex;
+      align-items: center;
+
+      small {
+        background-color: ${({ theme })=> theme.colors.primary[300]};
+        color: ${({ theme })=> theme.colors.primary[500]};
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px;
+        border-radius: 4px;
+        margin-left: 8px;
+
         }
       }
 
@@ -86,10 +92,11 @@ export const Header = styled.header`
     .actions {
       display: flex;
       text-align: center;
-      }
+
       button {
         background-color: transparent;
         margin-left: 8px;
         border: none;
       }
-  `;
+    }
+`;
