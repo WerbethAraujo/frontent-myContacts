@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.header`
+    margin-bottom: 24px;
+
   a{
     display: flex;
     align-items: center;
@@ -13,7 +15,7 @@ export const Container = styled.header`
 
     span{
       font-weight: bold;
-      color: ${({ theme })=> theme.colors.primary[500]};
+      color: ${({ theme }) => theme.colors.primary[500]};
     }
   }
 

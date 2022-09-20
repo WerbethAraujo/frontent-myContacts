@@ -5,9 +5,10 @@ export default {
     700: '#ccc', // light gray
     100: '#fff', // white
 
-    primary:{
-      700: '#0314af', // dark
-      500: '#5061FC', // main
+    primary: {
+      700: '#0c13e2', // dark
+      500: '#202dfb', // main
+      400: '#4f5bfd', // main-light
       300: '#e4e7ff' // light
     },
   }

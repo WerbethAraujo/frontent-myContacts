@@ -1,10 +1,16 @@
 import PageHeader from '../../components/PageHeader';
+import ContactForm from '../../components/ContactForm';
 
-function EditContact(){
+function EditContact() {
   return (
-    <PageHeader
-      title='Editar Gabriel Barros'
-     />
+    <>
+      <PageHeader
+        title='Editar Gabriel Barros'
+      />
+      <ContactForm
+        buttonLabel='Salvar Alterações'
+      />
+    </>
   )
 }
 
