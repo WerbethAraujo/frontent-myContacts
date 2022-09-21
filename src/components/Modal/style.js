@@ -30,6 +30,9 @@ export const Container = styled.div`
     : theme.colors.grey[500]
   )}
   }
+  span{
+    font-style: italic;
+  }
 `;
 
 export const Footer = styled.footer`
