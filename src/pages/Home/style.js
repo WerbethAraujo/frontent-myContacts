@@ -8,7 +8,7 @@ export const InputSearchContainer = styled.div`
    width: 100%;
 
    input {
-    background-color: ${({theme})=> theme.colors[100]};
+    background-color: ${({ theme }) => theme.colors[100]};
     padding: 0 16px;
     width: 100%;
     height: 50px;
@@ -18,7 +18,7 @@ export const InputSearchContainer = styled.div`
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 
     &::placeholder{
-      color: ${({theme})=> theme.colors[700]}
+      color: ${({ theme }) => theme.colors.grey[100]}
     }
    }
 `;
@@ -36,16 +36,16 @@ export const Header = styled.header`
   a {
    text-decoration: none;
    font-size: 16px;
-   border: solid 2px ${({ theme })=> theme.colors.primary[500]};
+   border: solid 2px ${({ theme }) => theme.colors.primary[500]};
    padding: 8px 16px;
    border-radius: 4px;
    font-weight: bold;
-   color: ${({ theme })=> theme.colors.primary[500]};
+   color: ${({ theme }) => theme.colors.primary[500]};
    transition: all 0.2s ease-in;
 
   &:hover{
-   background-color: ${({ theme })=> theme.colors.primary[500]};
-   color:${({theme})=> theme.colors[100]};
+   background-color: ${({ theme }) => theme.colors.primary[500]};
+   color:${({ theme }) => theme.colors[100]};
   }
 
   }`;
@@ -64,7 +64,7 @@ export const CardsContainer = styled.div`
       }
 
       span{
-        color: ${({ theme })=> theme.colors.primary[500]};
+        color: ${({ theme }) => theme.colors.primary[500]};
         font-weight: bold;
         margin-right: 8px;
       }
@@ -72,7 +72,7 @@ export const CardsContainer = styled.div`
   `;
 
 export const Card = styled.div`
-  background-color: ${({ theme })=> theme.colors[100]};
+  background-color: ${({ theme }) => theme.colors[100]};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 16px;
   display: flex;
@@ -90,8 +90,8 @@ export const Card = styled.div`
       align-items: center;
 
       small {
-        background-color: ${({ theme })=> theme.colors.primary[300]};
-        color: ${({ theme })=> theme.colors.primary[500]};
+        background-color: ${({ theme }) => theme.colors.primary[300]};
+        color: ${({ theme }) => theme.colors.primary[500]};
         text-transform: uppercase;
         font-size: 12px;
         font-weight: bold;
@@ -105,7 +105,7 @@ export const Card = styled.div`
       span {
         display: block;
         font-size: 14px;
-        color: ${({theme})=> theme.colors[700]};
+        color: ${({ theme }) => theme.colors.grey[900]};
       }
     }
 

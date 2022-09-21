@@ -16,5 +16,7 @@ export default styled.input`
   &:focus{
     border-color: ${({ theme }) => theme.colors.primary[500]};
   }
-
+  &:placeholder{
+    color: ${({ theme }) => theme.colors.grey[100]}
+  }
 `;
