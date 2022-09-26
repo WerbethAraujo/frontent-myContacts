@@ -21,7 +21,7 @@ export default styled.button`
   }
 
   &[disabled]{
-    background-color: ${({ theme }) => theme.colors.grey[500]};
+    background-color: ${({ theme }) => theme.colors.grey[100]};
     cursor: default;
   }
 
