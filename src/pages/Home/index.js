@@ -8,6 +8,11 @@ import edit from '../../assets/images/icons/edit.svg';
 function Home() {
   const [contacts, setContacts] = useState([]);
   const [orderBy, setOrderBy] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredContacts = contacts.filter((contact) => (
+    contact.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+  ))
 
   useEffect(() => {
     fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
@@ -24,18 +29,28 @@ function Home() {
     setOrderBy((prevState => prevState === 'asc' ? 'desc' : 'asc'))
   }
 
+  const handleChangeSearchTerm = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
   return (
     <Container>
       <InputSearchContainer>
-        <input type='text' placeholder='Pesquisar Contato...' />
+        <input
+          value={searchTerm}
+          type='text'
+          placeholder='Pesquisar Contato...'
+          onChange={handleChangeSearchTerm}
+        />
+
       </InputSearchContainer>
       <Header>
-        <strong>{contacts.length}
-          {contacts.length === 1 ? ' Contato' : ' Contatos'}</strong>
+        <strong>{filteredContacts.length}
+          {filteredContacts.length === 1 ? ' Contato' : ' Contatos'}</strong>
         <Link to='/new'>Novo Contato</Link>
       </Header>
 
-      <CardsHeader orderBy={orderBy}>
+      {filteredContacts.length > 0 && <CardsHeader orderBy={orderBy}>
         <button
           type='button'
           onClick={handleToggleOrderBy}
@@ -44,8 +59,9 @@ function Home() {
           <img src={arrow} alt="arrow" />
         </button>
       </CardsHeader>
+      }
 
-      {contacts.map((contact) => (
+      {filteredContacts.map((contact) => (
         <Card key={contact.id}>
           <div className="info">
             <div className="contact-name">
