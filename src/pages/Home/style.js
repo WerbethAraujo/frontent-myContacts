@@ -51,25 +51,28 @@ export const Header = styled.header`
 
   }`;
 
-export const CardsContainer = styled.div`
+export const CardsHeader = styled.header`
   margin-top: 24px;
+  margin-bottom: 8px;
 
-  header {
-    margin-bottom: 8px;
-
-    button{
-      display: flex;
-      align-items: center;
-      background-color: transparent;
-        border: none;
-      }
-
-      span{
-        color: ${({ theme }) => theme.colors.primary[500]};
-        font-weight: bold;
-        margin-right: 8px;
-      }
+  button{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
     }
+
+    span{
+      color: ${({ theme }) => theme.colors.primary[500]};
+      font-weight: bold;
+      margin-right: 8px;
+      }
+
+      img{
+        transform: ${({ orderBy }) => orderBy === 'asc' ? 'rotate(180deg)' : 'rotate(0deg)'};
+        transition: transform 0.2s ease-in;
+
+      }
   `;
 
 export const Card = styled.div`
