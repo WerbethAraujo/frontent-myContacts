@@ -4,6 +4,7 @@
     "es2021": true
   },
   "extends": [
+    "plugin:react-hooks/recommended",
     "plugin:react/recommended",
     "airbnb",
     "prettier"
@@ -14,6 +15,7 @@
     "sourceType": "module"
   },
   "plugins": [
+    "react-hooks",
     "react"
   ],
   "rules": {
@@ -27,6 +29,9 @@
       }
     ],
     "react/react-in-jsx-scope": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-promise-executor-return": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
