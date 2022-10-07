@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -7,7 +7,9 @@ import {
   CardsHeader,
   Card,
   InputSearchContainer,
-  ErrorContainer
+  ErrorContainer,
+  EmptyBoxContainer,
+  SearchTermNotFound
 } from './style';
 import Button from '../../components/Button';
 
@@ -15,6 +17,8 @@ import arrow from '../../assets/images/icons/arrow.svg';
 import trach from '../../assets/images/icons/trach.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import sad from '../../assets/images/sad.svg';
+import emptyBox from '../../assets/images/empty-box.svg';
+import magnifierQuestion from '../../assets/images/magnifier-question.svg';
 
 import Loader from '../../components/Loader'
 import ContactsService from '../../services/ContactsService'
@@ -30,7 +34,7 @@ function Home() {
     contact.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
   )), [contacts, searchTerm]);
 
-  async function loadContacts() {
+  const loadContacts = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -41,17 +45,18 @@ function Home() {
 
     } catch (error) {
       setHasError(true)
+
     } finally {
       setIsLoading(false);
 
     }
-  }
-
-  useEffect(() => {
-
-    loadContacts();
 
   }, [orderBy]);
+
+  useEffect(() => {
+    loadContacts();
+
+  }, [loadContacts]);
 
   const handleToggleOrderBy = () => {
     setOrderBy((prevState => prevState === 'asc' ? 'desc' : 'asc'))
@@ -69,42 +74,76 @@ function Home() {
     <Container>
       <Loader isLoading={isLoading} />
 
-      <InputSearchContainer>
-        <input
-          value={searchTerm}
-          type='text'
-          placeholder='Pesquisar Contato...'
-          onChange={handleChangeSearchTerm}
-        />
+      {contacts.length > 0 && (
+        <InputSearchContainer>
+          <input
+            type='text'
+            value={searchTerm}
+            placeholder='Pesquisar Contato...'
+            onChange={handleChangeSearchTerm}
+          />
+        </InputSearchContainer>
+      )}
 
-      </InputSearchContainer>
-
-      <Header hasError={hasError}>
-        {!hasError && <strong>{filteredContacts.length}
-          {filteredContacts.length === 1 ? ' Contato' : ' Contatos'}</strong>}
-        <Link to='/new'>Novo Contato</Link>
+      <Header justifyContent={
+        // eslint-disable-next-line no-nested-ternary
+        hasError
+          ? 'flex-end'
+          : (contacts.length
+            ? 'space-between'
+            : 'center'
+          )
+      }>
+        {(!hasError && contacts.length > 0) && (
+          <strong>
+            {filteredContacts.length}
+            {filteredContacts.length === 1 ? ' Contato' : ' Contatos'}
+          </strong>
+        )}
+        {!isLoading && <Link to='/new'>Novo Contato</Link>}
       </Header>
 
-      {hasError && <ErrorContainer>
-        <img src={sad} alt="sad" />
-        <div className='info'>
-          <p>Ocorreu um erro ao obter os seus contatos!</p>
-          <Button type='button' onClick={handleTryAgain}>Tentar novamente</Button>
-        </div>
-      </ErrorContainer>}
+      {hasError && (
+        <ErrorContainer>
+          <img src={sad} alt="sad" />
+          <div className='info'>
+            <p>Ocorreu um erro ao obter os seus contatos!</p>
+            <Button type='button' onClick={handleTryAgain}>
+              Tentar novamente
+            </Button>
+          </div>
+        </ErrorContainer>)}
 
       {!hasError && (
         <>
-          {filteredContacts.length > 0 && <CardsHeader orderBy={orderBy}>
-            <button
-              type='button'
-              onClick={handleToggleOrderBy}
-            >
-              <span>Nome</span>
-              <img src={arrow} alt="arrow" />
-            </button>
-          </CardsHeader>
-          }
+          {(contacts.length < 1 && !isLoading) && (
+            <EmptyBoxContainer>
+              <img src={emptyBox} alt="empty-box" />
+
+              <p>
+                Você ainda não nenhum contato cadastrado! Click no botão <strong>Novo Contato</strong> à cima para cadastrar o seu primeiro contato.
+              </p>
+
+            </EmptyBoxContainer>
+          )}
+          {(contacts.length > 0 && filteredContacts.length < 1) && (
+            <SearchTermNotFound>
+              <img src={magnifierQuestion} alt="magnifierQuestion" />
+
+              <p>Nenhum contato foi encontrado para <strong>{searchTerm}</strong></p>
+            </SearchTermNotFound>
+          )}
+          {filteredContacts.length > 0 && (
+            <CardsHeader orderBy={orderBy}>
+              <button
+                type='button'
+                onClick={handleToggleOrderBy}
+              >
+                <span>Nome</span>
+                <img src={arrow} alt="arrow" />
+              </button>
+            </CardsHeader>
+          )}
 
           {filteredContacts.map((contact) => (
             <Card key={contact.id}>
