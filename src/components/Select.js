@@ -17,4 +17,9 @@ export default styled.select`
     border-color: ${({ theme }) => theme.colors.primary[500]};
   }
 
+  &[disabled]{
+    background-color:  ${({ theme }) => theme.colors.grey[200]};
+    border-color:  ${({ theme }) => theme.colors.grey[100]};
+  }
+
 `;

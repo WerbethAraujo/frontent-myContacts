@@ -10,4 +10,13 @@ export const Container = styled.div`
     margin-top: 8px;
     font-size: 14px;
   }
+  .form-item{
+    position: relative;
+
+    .loader{
+      position: absolute;
+      right: 16px;
+      top: 18px;
+    }
+  }
 `;
