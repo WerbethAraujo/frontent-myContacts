@@ -15,6 +15,15 @@ class HttpClient {
 
   }
 
+  post(path, options) {
+    return this.makeRequest(path, {
+      method: "POST",
+      body: options?.body,
+      headers: options?.headers,
+    })
+
+  }
+
   async makeRequest(path, options) {
 
     await delay(500);
