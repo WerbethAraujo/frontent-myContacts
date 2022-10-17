@@ -4,8 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from '../../assets/styles/global';
 import defaultTheme from '../../assets/styles/themes/default';
 import { Container } from './style';
+
 import Header from '../header';
 import Routes from '../../Routes'
+import ToastContainer from '../Toast/ToastContainer'
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
+        <ToastContainer />
+
         <Container>
           <Header />
           <Routes />
