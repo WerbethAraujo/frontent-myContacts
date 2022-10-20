@@ -18,6 +18,10 @@ export default {
       900: '#F63131', // dark
       500: '#FC5050', // main
       100: '#F97171', // light
+    },
+
+    success: {
+      500: '#51ca73', // main
     }
   }
 };
