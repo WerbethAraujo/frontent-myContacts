@@ -19,6 +19,12 @@ class ContactsService {
     })
   }
 
+  updateContact(id, contact) {
+    return this.HttpClient.put(`/contacts/${id}`, {
+      body: contact
+    })
+  }
+
 }
 
 
