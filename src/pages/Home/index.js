@@ -22,6 +22,7 @@ import magnifierQuestion from '../../assets/images/magnifier-question.svg';
 
 import Loader from '../../components/Loader'
 import ContactsService from '../../services/ContactsService'
+import Modal from '../../components/Modal'
 
 function Home() {
   const [contacts, setContacts] = useState([]);
@@ -73,6 +74,17 @@ function Home() {
   return (
     <Container>
       <Loader isLoading={isLoading} />
+
+      <Modal
+        danger
+        title='Tem certeza qyue deseja deletar esse contato "Werbeth Araujo"'
+      >
+        <div className="modal-body">
+          <span>Essa açaõ nao poderá ser desfeita</span>
+          <span>Essa açaõ nao poderá ser desfeita</span>
+          <span>Essa açaõ nao poderá ser desfeita</span>
+        </div>
+      </Modal>
 
       {contacts.length > 0 && (
         <InputSearchContainer>
