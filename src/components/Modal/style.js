@@ -48,6 +48,7 @@ export const Footer = styled.footer`
     border: none;
     margin-right: 24px;
     font-size: 16px;
+    cursor: not-allowed;
     color: ${({ theme }) => theme.colors.grey[100]};
   }
 `;

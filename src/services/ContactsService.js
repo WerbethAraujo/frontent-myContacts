@@ -25,6 +25,10 @@ class ContactsService {
     })
   }
 
+  delete(id) {
+    return this.HttpClient.delete(`/contacts/${id}`)
+  }
+
 }
 
 
